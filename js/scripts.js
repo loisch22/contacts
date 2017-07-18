@@ -15,9 +15,27 @@ Contact.prototype.fullName = function() {
 
 
 $(document).ready(function() {
+
+  $("#add-address").click(function() {
+    $("#new-addresses").append('<div class="new-address">' +
+                                  '<div class="form-group">' +
+                                    '<label for="new-street">Street</label>' +
+                                    '<input type="text" class="form-control new-street"' +
+                                  '</div>' +
+                                  '<div class="form-group">' +
+                                    '<label for="new-ciy">City</label>' +
+                                    '<input type="text" class="form-control new-city"' +
+                                  '</div>' +
+                                  '<div class="form-group">' +
+                                    '<label for="new-state">State</label>' +
+                                    '<input type="text" class="form-control new-state"' +
+                                  '</div>' +
+                                '</div>');
+  });
+
   $("form#new-contact").submit(function(event) {
     event.preventDefault();
-debugger;
+
     var inputtedFirstName = $("input#new-first-name").val();
     var inputtedLastName = $("input#new-last-name").val();
 
@@ -32,7 +50,7 @@ debugger;
       $(".last-name").text(newContact.lastName);
     });
 
-  $("input#new-first-name").val("");
-  $("input#new-last-name").val("");
+    $("input#new-first-name").val("");
+    $("input#new-last-name").val("");
   });
 });
