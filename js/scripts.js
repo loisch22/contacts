@@ -11,6 +11,7 @@ function Address(street, city, state) {
   this.state = state;
 }
 
+
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
@@ -25,6 +26,7 @@ function resetFields() {
     $("input.new-street").val("");
     $("input.new-city").val("");
     $("input.new-state").val("");
+    $(".new-address").remove();
 }
 
 // user interface logic
@@ -62,6 +64,14 @@ $(document).ready(function() {
       newContact.addresses.push(newAddress)
     });
 
+    $("#vacation-address").each(function() {
+      var inputtedStreet = $(this).find("input.new-street").val();
+      var inputtedCity = $(this).find("input.new-city").val();
+      var inputtedState = $(this).find("input.new-state").val();
+      var vacationHome = new Address(inputtedStreet, inputtedCity, inputtedState)
+      newContact.addresses.push(vacationHome)
+    });
+
     $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
 
     $(".contact").last().click(function() {
@@ -76,6 +86,7 @@ $(document).ready(function() {
     });
 
     resetFields();
+
 
   });
 });
